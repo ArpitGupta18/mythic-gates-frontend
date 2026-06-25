@@ -1,52 +1,139 @@
 <section class="auth-page">
-  <form [formGroup]="registerForm" (ngSubmit)="register()" class="auth-card">
-    <h1>Register</h1>
+  <div class="auth-shell auth-shell--reverse auth-shell--register">
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="register()"
+      class="auth-form"
+    >
+      <header class="auth-header">
+        <h2>Create your hero.</h2>
 
-    <label>Username</label>
-    <input type="text" formControlName="username">
-    @if (username.touched && username.errors?.['required']) {
-      <p class="error">Username is required</p>
-    }
-    @if (username.touched && username.errors?.['minlength']) {
-      <p class="error">Username must be at least 3 characters</p>
-    }
+        <p>
+          Join Mythic Gates and begin your adventure.
+        </p>
+      </header>
 
-    <label>Email</label>
-    <input type="email" formControlName="email">
-    @if (email.touched &&email.errors?.['required']) {
-      <p class="error">Email is required</p>
-    }
-    @if (email.touched && email.errors?.['email']) {
-      <p class="error">Invalid email format</p>
-    }
+      <div class="auth-body">
 
-    <label>Password</label>
-    <input type="password" formControlName="password">
-    @if (password.touched && password.errors?.['required']) {
-      <p class="error">Password is required</p>
-    }
-    @if (password.touched && password.errors?.['minlength']) {
-      <p class="error">Password must be at least 8 characters</p>
-    }
+        <div class="form-group">
+          <label>Username</label>
 
-    <label>Confirm Password</label>
-    <input type="password" formControlName="confirmPassword">
-    @if (confirmPassword.touched && confirmPassword.errors?.['required']) {
-      <p class="error">Confirm password is required</p>
-    }
-    @if (confirmPassword.touched && registerForm.errors?.['passwordMismatch']) {
-      <p class="error">Passwords do not match</p>
-    }
+          <input
+            type="text"
+            formControlName="username"
+            placeholder="Choose a username"
+          >
 
-    @if (errorMessage()) {
-      <p class="error">{{ errorMessage() }}</p>
-    }
+          <p class="field-error">
+            @if (username.touched && username.errors?.['required']) {
+              Username is required
+            }
 
-    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+            @if (username.touched && username.errors?.['minlength']) {
+              Username must be at least 3 characters
+            }
+          </p>
+        </div>
 
-    <p>
-      Already have an account?
-      <a routerLink="/login">Login</a>
-    </p>
-  </form>
+        <div class="form-group">
+          <label>Email</label>
+
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Enter your email"
+          >
+
+          <p class="field-error">
+            @if (email.touched && email.errors?.['required']) {
+              Email is required
+            }
+
+            @if (email.touched && email.errors?.['email']) {
+              Invalid email address
+            }
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Create a password"
+          >
+
+          <p class="field-error">
+            @if (password.touched && password.errors?.['required']) {
+              Password is required
+            }
+
+            @if (password.touched && password.errors?.['minlength']) {
+              Password must be at least 8 characters
+            }
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Confirm Password</label>
+
+          <input
+            type="password"
+            formControlName="confirmPassword"
+            placeholder="Confirm your password"
+          >
+
+          <p class="field-error">
+            @if (confirmPassword.touched && confirmPassword.errors?.['required']) {
+              Confirm password is required
+            }
+
+            @if (confirmPassword.touched && registerForm.errors?.['passwordMismatch']) {
+              Passwords do not match
+            }
+          </p>
+        </div>
+
+        <p class="server-error">
+          @if (errorMessage()) {
+            {{ errorMessage() }}
+          }
+        </p>
+
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid"
+        >
+          Create Account
+        </button>
+
+      </div>
+
+      <footer class="auth-footer">
+        <span></span>
+        <p>or</p>
+        <span></span>
+      </footer>
+
+      <p class="auth-link">
+        Already have an account?
+        <a routerLink="/login">Login</a>
+      </p>
+    </form>
+
+    <aside class="auth-art">
+      <div class="auth-art-content">
+
+        <h1>MYTHIC GATES</h1>
+
+        <p>
+          Every legend has a beginning.
+          <br>
+          Forge yours today.
+        </p>
+      </div>
+    </aside>
+
+  </div>
 </section>

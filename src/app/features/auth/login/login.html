@@ -1,29 +1,60 @@
 <section class="auth-page">
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-card">
-    <h1>Login</h1>
+  <div class="auth-shell">
+    <aside class="auth-art">
+      <div class="auth-art-content">
+        <h1>MYTHIC GATES</h1>
+        <p>Step through the gates.<br />Your legend begins now.</p>
+      </div>
+    </aside>
 
-    <label>Username</label>
-    <input type="text" formControlName="username">
-    @if (username.touched && username.errors?.['required']) {
-      <p class="error">Username is required</p>
-    }
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-form">
+      <header class="auth-header">
+        <h2>Welcome back, hero.</h2>
+        <p>Continue your adventure in Mythic Gates.</p>
+      </header>
 
+      <div class="auth-body">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" formControlName="username" placeholder="Enter your username" />
 
-    <label>Password</label>
-    <input type="password" formControlName="password">
-    @if (password.touched && password.errors?.['required']) {
-      <p class="error">Password is required</p>
-    }
+          <p class="field-error">
+            @if (username.touched && username.errors?.['required']) {
+              Username is required
+            }
+          </p>
+        </div>
 
-    @if (errorMessage()) {
-      <p class="error">{{ errorMessage() }}</p>
-    }
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" formControlName="password" placeholder="Enter your password" />
 
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+          <p class="field-error">
+            @if (password.touched && password.errors?.['required']) {
+              Password is required
+            }
+          </p>
+        </div>
 
-    <p>
-      Don't have an account?
-      <a routerLink="/register">Register</a>
-    </p>
-  </form>
+        <p class="server-error">
+          @if (errorMessage()) {
+            {{ errorMessage() }}
+          }
+        </p>
+
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      </div>
+
+      <footer class="auth-footer">
+        <span></span>
+        <p>or</p>
+        <span></span>
+      </footer>
+
+      <p class="auth-link">
+        Don't have an account?
+        <a routerLink="/register">Register</a>
+      </p>
+    </form>
+  </div>
 </section>
