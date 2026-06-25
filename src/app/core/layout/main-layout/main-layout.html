@@ -1,16 +1,59 @@
-<header>
-  <h2>Mythic Gates</h2>
+<section class="main-layout">
+  <aside class="main-sidebar">
+    <div>
+      <div class="brand">
+        <span class="brand-icon">⚔️</span>
+        <h1>Mythic Gates</h1>
+      </div>
 
-  <nav>
-    <a routerLink="/">Home</a>
-    <a routerLink="/characters">Characters</a>
-    <a routerLink="/bosses">Bosses</a>
-  </nav>
-</header>
+      <nav class="main-nav">
+        <a routerLink="/game/dashboard" routerLinkActive="active">
+          🏰 Dashboard
+        </a>
 
-<app-logout />
-<hr />
+        <a routerLink="/game/characters" routerLinkActive="active">
+          🧙 Characters
+        </a>
 
-<main>
-  <router-outlet />
-</main>
+        <a routerLink="/game/bosses" routerLinkActive="active">
+          👹 Bosses
+        </a>
+
+        <a routerLink="/game/battles" routerLinkActive="active">
+          ⚔️ Battles
+        </a>
+
+        <a routerLink="/game/shop" routerLinkActive="active">
+          🛒 Shop
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <span class="user-icon">👤</span>
+        <span class="username">Hero</span>
+      </div>
+
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="stat-icon">💰</span>
+          <strong>12000</strong>
+        </div>
+
+        <div class="sidebar-stat">
+          <span class="stat-icon">🏆</span>
+          <strong>3</strong>
+        </div>
+      </div>
+
+      <app-logout></app-logout>
+    </div>
+  </aside>
+
+  <main class="main-container">
+    <section class="main-content">
+      <router-outlet />
+    </section>
+  </main>
+</section>

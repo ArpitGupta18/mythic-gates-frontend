@@ -45,7 +45,7 @@ export class Login {
         this.authService.saveToken(response.data?.accessToken!);
 
         if (this.authService.isUser()) {
-          this.router.navigate(['']);
+          this.router.navigate(['game']);
         }
         if (this.authService.isAdmin()) {
           this.router.navigate(['admin', 'home']);

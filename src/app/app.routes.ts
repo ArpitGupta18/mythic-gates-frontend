@@ -39,17 +39,20 @@ export const routes: Routes = [
   //   ],
   // },
   {
-    path: '',
+    path: 'game',
     loadComponent: () => import('./core/layout/main-layout/main-layout').then((m) => m.MainLayout),
-
     canActivateChild: [authGuard, roleGuard],
     data: {
       roles: ['ROLE_USER'],
     },
-
     children: [
       {
         path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+      {
+        path: 'dashboard',
         loadComponent: () => import('./features/home/home/home').then((m) => m.Home),
       },
       {
@@ -64,6 +67,17 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/bosses/boss-list/boss-list').then((m) => m.BossList),
       },
+      {
+        path: 'battles',
+        loadComponent: () =>
+          import('./features/battles/battles/battles').then((m) => m.Battles),
+      },
+      {
+        path: 'shop',
+        loadComponent: () =>
+          import('./features/shop/shop/shop').then((m) => m.Shop),
+      },
+
     ],
   },
   {
