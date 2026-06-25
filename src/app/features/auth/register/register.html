@@ -1,0 +1,52 @@
+<section class="auth-page">
+  <form [formGroup]="registerForm" (ngSubmit)="register()" class="auth-card">
+    <h1>Register</h1>
+
+    <label>Username</label>
+    <input type="text" formControlName="username">
+    @if (username.touched && username.errors?.['required']) {
+      <p class="error">Username is required</p>
+    }
+    @if (username.touched && username.errors?.['minlength']) {
+      <p class="error">Username must be at least 3 characters</p>
+    }
+
+    <label>Email</label>
+    <input type="email" formControlName="email">
+    @if (email.touched &&email.errors?.['required']) {
+      <p class="error">Email is required</p>
+    }
+    @if (email.touched && email.errors?.['email']) {
+      <p class="error">Invalid email format</p>
+    }
+
+    <label>Password</label>
+    <input type="password" formControlName="password">
+    @if (password.touched && password.errors?.['required']) {
+      <p class="error">Password is required</p>
+    }
+    @if (password.touched && password.errors?.['minlength']) {
+      <p class="error">Password must be at least 8 characters</p>
+    }
+
+    <label>Confirm Password</label>
+    <input type="password" formControlName="confirmPassword">
+    @if (confirmPassword.touched && confirmPassword.errors?.['required']) {
+      <p class="error">Confirm password is required</p>
+    }
+    @if (confirmPassword.touched && registerForm.errors?.['passwordMismatch']) {
+      <p class="error">Passwords do not match</p>
+    }
+
+    @if (errorMessage()) {
+      <p class="error">{{ errorMessage() }}</p>
+    }
+
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+
+    <p>
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+  </form>
+</section>

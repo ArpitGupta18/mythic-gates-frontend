@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../../../core/services/auth';
 
@@ -9,7 +9,8 @@ import { Auth } from '../../../core/services/auth';
   styleUrl: './home.scss',
 })
 export class Home {
-  constructor(private router: Router, private authService: Auth) {}
+  router = inject(Router);
+  authService = inject(Auth);
 
   goToCharacters() {
     this.router.navigate(['characters']);
