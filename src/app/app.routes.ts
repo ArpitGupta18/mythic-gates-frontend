@@ -39,6 +39,11 @@ export const routes: Routes = [
   //   ],
   // },
   {
+    path: '',
+    redirectTo: 'game/dashboard',
+    pathMatch: 'full',
+  },
+  {
     path: 'game',
     loadComponent: () => import('./core/layout/main-layout/main-layout').then((m) => m.MainLayout),
     canActivateChild: [authGuard, roleGuard],
@@ -69,15 +74,12 @@ export const routes: Routes = [
       },
       {
         path: 'battles',
-        loadComponent: () =>
-          import('./features/battles/battles/battles').then((m) => m.Battles),
+        loadComponent: () => import('./features/battles/battles/battles').then((m) => m.Battles),
       },
       {
         path: 'shop',
-        loadComponent: () =>
-          import('./features/shop/shop/shop').then((m) => m.Shop),
+        loadComponent: () => import('./features/shop/shop/shop').then((m) => m.Shop),
       },
-
     ],
   },
   {
@@ -107,6 +109,7 @@ export const routes: Routes = [
       roles: ['ROLE_ADMIN'],
     },
   },
+
   {
     path: '**',
     loadComponent: () => import('./shared/not-found/not-found').then((m) => m.NotFound),

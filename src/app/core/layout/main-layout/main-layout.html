@@ -1,59 +1,87 @@
 <section class="main-layout">
   <aside class="main-sidebar">
+
     <div>
       <div class="brand">
-        <span class="brand-icon">⚔️</span>
-        <h1>Mythic Gates</h1>
+        <div class="brand-icon">
+          <mat-icon>shield</mat-icon>
+        </div>
+
+        <div>
+          <h1>Mythic Gates</h1>
+          <p>Hero Command</p>
+        </div>
       </div>
 
       <nav class="main-nav">
+
         <a routerLink="/game/dashboard" routerLinkActive="active">
-          🏰 Dashboard
+          <mat-icon>home</mat-icon>
+          <span>Dashboard</span>
         </a>
 
         <a routerLink="/game/characters" routerLinkActive="active">
-          🧙 Characters
+          <mat-icon>groups</mat-icon>
+          <span>Characters</span>
         </a>
 
         <a routerLink="/game/bosses" routerLinkActive="active">
-          👹 Bosses
+          <mat-icon>visibility</mat-icon>
+          <span>Bosses</span>
         </a>
 
         <a routerLink="/game/battles" routerLinkActive="active">
-          ⚔️ Battles
+          <mat-icon>sports_martial_arts</mat-icon>
+          <span>Battles</span>
         </a>
 
         <a routerLink="/game/shop" routerLinkActive="active">
-          🛒 Shop
+          <mat-icon>storefront</mat-icon>
+          <span>Shop</span>
         </a>
+
       </nav>
     </div>
 
+
+    <!---->
     <div class="sidebar-footer">
+
       <div class="sidebar-user">
-        <span class="user-icon">👤</span>
-        <span class="username">Hero</span>
+
+        <div class="avatar">
+          <mat-icon>person</mat-icon>
+        </div>
+
+        <div class="user-info">
+          <span class="username">{{ user()?.username }}</span>
+        </div>
+
       </div>
 
       <div class="sidebar-stats">
-        <div class="sidebar-stat">
-          <span class="stat-icon">💰</span>
-          <strong>12000</strong>
+
+        <div class="stat">
+          <mat-icon>paid</mat-icon>
+          <strong>{{ user()?.gold }}</strong>
         </div>
 
-        <div class="sidebar-stat">
-          <span class="stat-icon">🏆</span>
-          <strong>3</strong>
+        <div class="stat">
+          <mat-icon>emoji_events</mat-icon>
+          <strong>{{ user()?.bossesDefeated }}</strong>
         </div>
+
       </div>
 
       <app-logout></app-logout>
+
     </div>
+
   </aside>
 
   <main class="main-container">
-    <section class="main-content">
-      <router-outlet />
+    <section class="main-content" [class.has-overlay]="hasOverlay">
+      <router-outlet/>
     </section>
   </main>
 </section>
