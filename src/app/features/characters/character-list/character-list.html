@@ -1,1 +1,15 @@
-<h1>Characters Page</h1>
+@for (character of characters(); track character.publicId) {
+  <p>{{ character.name }}</p>
+  <img src="{{character.imageUrl}}" alt="{{character.name}}" width="100px"/>
+
+}
+
+<button (click)="previousPage()" [disabled]="page() === 0" type="button">
+  Previous
+</button>
+
+<span>Page {{ page() + 1 }} of {{ totalPages() }}</span>
+
+<button (click)="nextPage()" [disabled]="last()" type="button">
+  Next
+</button>
