@@ -11,12 +11,11 @@ export class CharacterService {
 
   private http = inject(HttpClient);
 
-  getCharacters(page = 0, size = 8, sortBy = 'name', sortDir: 'asc' | 'desc' = 'asc') {
-    const params = new HttpParams()
-      .set('page', page)
-      .set('size', size)
-      .set('sortBy', sortBy)
-      .set('sortDir', sortDir);
-    return this.http.get<ApiResponse<PageResponse<CharacterResponse>>>(`${this.apiUrl}/characters`, { params });
+  getCharacters(page = 0, size = 2) {
+    const params = new HttpParams().set('page', page).set('size', size);
+    return this.http.get<ApiResponse<PageResponse<CharacterResponse>>>(
+      `${this.apiUrl}/users/me/characters`,
+      { params },
+    );
   }
 }

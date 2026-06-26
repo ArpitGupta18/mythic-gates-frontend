@@ -1,0 +1,24 @@
+<article class="character-card">
+  <div class="rarity-badge" [class]="character().rarity.toLowerCase()">
+    {{ character().rarity }}
+  </div>
+
+  <div class="image-wrap">
+    <img [ngSrc]="character().imageUrl" [alt]="character().name" width="200" height="250"/>
+  </div>
+
+  <div class="card-body">
+    <h3>{{ character().name }}</h3>
+
+    <div class="quick-stats">
+      <span>HP {{ character().baseHealth }}</span>
+      <span>MP {{ character().baseMana }}</span>
+      <span>ATK {{ character().attack }}</span>
+      <span>DEF {{ character().defense }}</span>
+    </div>
+
+    <button type="button" (click)="onViewDetails()">
+      View Details
+    </button>
+  </div>
+</article>

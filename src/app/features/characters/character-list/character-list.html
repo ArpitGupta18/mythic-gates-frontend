@@ -1,15 +1,42 @@
-@for (character of characters(); track character.publicId) {
-  <p>{{ character.name }}</p>
-  <img src="{{character.imageUrl}}" alt="{{character.name}}" width="100px"/>
+<section class="characters-page">
+  <header class="characters-header">
+    <div>
+      <p class="eyebrow">Hero Roster</p>
+      <h2>Characters</h2>
+      <p class="subtitle">
+        Choose your champion and inspect their battle stats.
+      </p>
+    </div>
 
-}
+    <p class="total-count">{{ totalElements() }} Heroes</p>
+  </header>
 
-<button (click)="previousPage()" [disabled]="page() === 0" type="button">
-  Previous
-</button>
+  <section class="character-grid">
+    @for (character of characters(); track character.publicId) {
+      <app-character-card
+        [character]="character"
+        (viewDetails)="openDetails($event)"
+      />
+    }
+  </section>
 
-<span>Page {{ page() + 1 }} of {{ totalPages() }}</span>
+  <footer class="pagination">
+    <button type="button" (click)="previousPage()" [disabled]="page() === 0">
+      Previous
+    </button>
 
-<button (click)="nextPage()" [disabled]="last()" type="button">
-  Next
-</button>
+    <span>Page {{ page() + 1 }} of {{ totalPages() }}</span>
+
+    <button type="button" (click)="nextPage()" [disabled]="last()">
+      Next
+    </button>
+  </footer>
+
+  @if (selectedCharacter()) {
+    <app-character-detail-modal [character]="selectedCharacter()!"
+                                (close)="closeDetails()"></app-character-detail-modal>
+  }
+</section>
+
+
+

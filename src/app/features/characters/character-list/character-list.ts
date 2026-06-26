@@ -1,33 +1,39 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CharacterService } from '../../../core/services/character.service';
 import { CharacterResponse } from '../../../core/models/characters/character-response';
+import { NgOptimizedImage } from '@angular/common';
+import { CharacterCard } from '../character-card/character-card';
+import { CharacterDetailModal } from '../character-detail-modal/character-detail-modal';
 
 @Component({
   selector: 'app-character-list',
-  imports: [],
+  imports: [NgOptimizedImage, CharacterCard, CharacterDetailModal],
   templateUrl: './character-list.html',
   styleUrl: './character-list.scss',
 })
-export class CharacterList {
+export class CharacterList implements OnInit {
   private characterService = inject(CharacterService);
 
   characters = signal<CharacterResponse[]>([]);
 
   page = signal(0);
-  size = signal(3);
+  size = signal(5);
   totalPages = signal(0);
   totalElements = signal(0);
   last = signal(false);
 
+  selectedCharacter = signal<CharacterResponse | null>(null);
+
   ngOnInit() {
-    this.loadCharacters();
+    this.loadCharacters(0);
   }
 
-  loadCharacters(page = 0) {
+  loadCharacters(page: number) {
     this.characterService.getCharacters(page, this.size()).subscribe({
       next: (response) => {
         const data = response.data!;
 
+        console.log(response.data);
         this.characters.set(data.content);
         this.page.set(data.page);
         this.size.set(data.size);
@@ -39,6 +45,15 @@ export class CharacterList {
         console.error(err);
       },
     });
+  }
+
+  openDetails(character: CharacterResponse) {
+    console.log("Open details triggered", character);
+    this.selectedCharacter.set(character);
+  }
+
+  closeDetails() {
+    this.selectedCharacter.set(null);
   }
 
   nextPage() {

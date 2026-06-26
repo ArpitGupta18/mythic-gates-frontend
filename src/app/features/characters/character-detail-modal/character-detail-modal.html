@@ -1,0 +1,130 @@
+<!--<div class="modal-backdrop" (click)="onClose()">-->
+<!--  <section class="character-modal" (click)="$event.stopPropagation()">-->
+<!--    <button type="button" class="close-btn" (click)="onClose()">×</button>-->
+
+<!--    <div class="modal-hero">-->
+<!--      <div class="modal-image">-->
+<!--        <img [src]="character().imageUrl" [alt]="character().name" />-->
+<!--      </div>-->
+
+<!--      <div class="modal-info">-->
+<!--        <p class="eyebrow">{{ character().rarity }} Hero</p>-->
+<!--        <h2>{{ character().name }}</h2>-->
+
+<!--        <p class="starter">-->
+<!--          {{ character().isStarter ? 'Starter Character' : 'Unlockable Character' }}-->
+<!--        </p>-->
+
+<!--        <div class="price">-->
+<!--          Gold Cost: {{ character().price }}-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <section class="stats-section">-->
+<!--      <h3>Battle Stats</h3>-->
+
+<!--      <div class="stats-grid">-->
+<!--        <span>Health <strong>{{ character().baseHealth }}</strong></span>-->
+<!--        <span>Mana <strong>{{ character().baseMana }}</strong></span>-->
+<!--        <span>Attack <strong>{{ character().attack }}</strong></span>-->
+<!--        <span>Defense <strong>{{ character().defense }}</strong></span>-->
+<!--        <span>Heal Power <strong>{{ character().healPower }}</strong></span>-->
+<!--        <span>Crit <strong>{{ character().critChance }}%</strong></span>-->
+<!--        <span>Dodge <strong>{{ character().dodgeChance }}%</strong></span>-->
+<!--      </div>-->
+<!--    </section>-->
+
+<!--    <section class="skills-section">-->
+<!--      <h3>Skills</h3>-->
+
+<!--      @if (loadingSkills()) {-->
+<!--        <p class="loading">Loading skills...</p>-->
+<!--      } @else {-->
+<!--        <div class="skills-grid">-->
+<!--          @for (skill of skills(); track skill.publicId) {-->
+<!--            <article class="skill-card">-->
+<!--              <div>-->
+<!--                <p class="skill-type">{{ skill.type }}</p>-->
+<!--                <h4>{{ skill.name }}</h4>-->
+<!--              </div>-->
+
+<!--              <div class="skill-meta">-->
+<!--                <span>Slot {{ skill.slot }}</span>-->
+<!--                <span>×{{ skill.damageMultiplier }}</span>-->
+<!--                <span>{{ skill.manaCost }} MP</span>-->
+<!--              </div>-->
+<!--            </article>-->
+<!--          } @empty {-->
+<!--            <p class="loading">No skills found.</p>-->
+<!--          }-->
+<!--        </div>-->
+<!--      }-->
+<!--    </section>-->
+<!--  </section>-->
+<!--</div>-->
+
+<div class="modal-backdrop" (click)="onClose()">
+  <section class="character-modal" (click)="$event.stopPropagation()">
+    <button type="button" class="close-btn" (click)="onClose()">×</button>
+
+    <div class="modal-top">
+      <div class="modal-image">
+        <img [src]="character().imageUrl" [alt]="character().name" />
+      </div>
+
+      <div class="modal-details">
+        <div class="modal-info">
+          <p class="eyebrow">{{ character().rarity }} Hero</p>
+          <h2>{{ character().name }}</h2>
+
+          <div class="meta-row">
+            <span>{{ character().isStarter ? 'Starter' : 'Unlockable' }}</span>
+            <span>{{ character().price }} Gold</span>
+          </div>
+        </div>
+
+        <section class="stats-section">
+          <h3>Battle Stats</h3>
+
+          <div class="stats-grid">
+            <span>Health <strong>{{ character().baseHealth }}</strong></span>
+            <span>Mana <strong>{{ character().baseMana }}</strong></span>
+            <span>Attack <strong>{{ character().attack }}</strong></span>
+            <span>Defense <strong>{{ character().defense }}</strong></span>
+            <span>Heal <strong>{{ character().healPower }}</strong></span>
+            <span>Crit <strong>{{ character().critChance }}%</strong></span>
+            <span>Dodge <strong>{{ character().dodgeChance }}%</strong></span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="skills-section">
+      <h3>Skills</h3>
+
+      @if (loadingSkills()) {
+        <p class="loading">Loading skills...</p>
+      } @else {
+        <div class="skills-grid">
+          @for (skill of skills(); track skill.publicId) {
+            <article class="skill-card">
+              <div>
+                <p class="skill-type">{{ skill.type }}</p>
+                <h4>{{ skill.name }}</h4>
+              </div>
+
+              <div class="skill-meta">
+                <span>Slot {{ skill.slot }}</span>
+                <span>×{{ skill.damageMultiplier }}</span>
+                <span>{{ skill.manaCost }} MP</span>
+              </div>
+            </article>
+          } @empty {
+            <p class="loading">No skills found.</p>
+          }
+        </div>
+      }
+    </section>
+  </section>
+</div>
