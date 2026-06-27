@@ -1,0 +1,78 @@
+<div class="modal-backdrop" (click)="onClose()">
+  <section class="battle-modal" (click)="$event.stopPropagation()">
+    <button type="button" class="close-btn" (click)="onClose()">×</button>
+
+    <header class="modal-header">
+      <span class="status-badge" [class]="battle().status.toLowerCase()">
+        {{ battle().status }}
+      </span>
+
+      <h2>{{ battle().characterName }} vs {{ battle().bossName }}</h2>
+    </header>
+
+    <section class="combatants">
+      <article class="combatant">
+        <img [src]="battle().characterImageUrl" [alt]="battle().characterName" />
+
+        <h3>{{ battle().characterName }}</h3>
+
+        <div class="bar-group">
+          <div class="bar-label">
+            <span>Health</span>
+            <strong>{{ battle().playerCurrentHealth }} / {{ battle().playerMaxHealth }}</strong>
+          </div>
+
+          <div class="bar">
+            <div
+              class="bar-fill health"
+              [style.width.%]="healthPercent(battle().playerCurrentHealth, battle().playerMaxHealth)"
+            ></div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-label">
+            <span>Mana</span>
+            <strong>{{ battle().playerCurrentMana }} / {{ battle().playerMaxMana }}</strong>
+          </div>
+
+          <div class="bar">
+            <div
+              class="bar-fill mana"
+              [style.width.%]="manaPercent(battle().playerCurrentMana, battle().playerMaxMana)"
+            ></div>
+          </div>
+        </div>
+      </article>
+
+      <div class="versus">VS</div>
+
+      <article class="combatant boss">
+        <img [src]="battle().bossImageUrl" [alt]="battle().bossName" />
+
+        <h3>{{ battle().bossName }}</h3>
+
+        <div class="bar-group">
+          <div class="bar-label">
+            <span>Health</span>
+            <strong>{{ battle().bossCurrentHealth }} / {{ battle().bossMaxHealth }}</strong>
+          </div>
+
+          <div class="bar">
+            <div
+              class="bar-fill boss-health"
+              [style.width.%]="healthPercent(battle().bossCurrentHealth, battle().bossMaxHealth)"
+            ></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="summary-grid">
+      <span>Turns <strong>{{ battle().turnCount }}</strong></span>
+      <span>Damage <strong>{{ battle().damageDealt }}</strong></span>
+      <span>Gold <strong>{{ battle().goldEarned }}</strong></span>
+      <span>Started <strong>{{ battle().createdAt | date: 'mediumDate' }}</strong></span>
+    </section>
+  </section>
+</div>

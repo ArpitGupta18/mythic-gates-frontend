@@ -4,40 +4,6 @@ import { roleGuard } from './core/guards/role-guard';
 import { guestGuard } from './core/guards/guest-guard';
 
 export const routes: Routes = [
-  // {
-  //   path: '',
-  //   loadComponent: () => import('./core/layout/main-layout/main-layout').then((m) => m.MainLayout),
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadComponent: () => import('./features/home/home/home').then((m) => m.Home),
-  //       canActivate: [authGuard, roleGuard],
-  //       data: {
-  //         roles: ['ROLE_USER']
-  //       }
-  //     },
-  //     {
-  //       path: 'characters',
-  //       loadComponent: () =>
-  //         import('./features/characters/character-list/character-list').then(
-  //           (m) => m.CharacterList,
-  //         ),
-  //       canActivate: [authGuard, roleGuard],
-  //       data: {
-  //         roles: ['ROLE_USER'],
-  //       },
-  //     },
-  //     {
-  //       path: 'bosses',
-  //       loadComponent: () =>
-  //         import('./features/bosses/boss-list/boss-list').then((m) => m.BossList),
-  //       canActivate: [authGuard, roleGuard],
-  //       data: {
-  //         roles: ['ROLE_USER']
-  //       }
-  //     },
-  //   ],
-  // },
   {
     path: '',
     redirectTo: 'game/dashboard',
@@ -74,7 +40,8 @@ export const routes: Routes = [
       },
       {
         path: 'battles',
-        loadComponent: () => import('./features/battles/battles/battles').then((m) => m.Battles),
+        loadComponent: () =>
+          import('./features/battles/battle-history/battle-history').then((m) => m.BattleHistory),
       },
       {
         path: 'shop',

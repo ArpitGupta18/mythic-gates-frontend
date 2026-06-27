@@ -1,0 +1,77 @@
+.battle-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 90px 110px 90px 90px;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.8rem 1rem;
+
+  &:hover {
+    background: var(--surface-elevated);
+  }
+}
+
+.status-badge {
+  width: fit-content;
+  padding: 0.35rem 0.6rem;
+  color: var(--text-primary);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  &.ongoing {
+    background: var(--warning);
+  }
+
+  &.won {
+    background: var(--success);
+  }
+
+  &.lost {
+    background: var(--danger);
+  }
+}
+
+.matchup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 800;
+
+  span {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+  }
+
+  strong {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.value {
+  color: var(--text-secondary);
+  font-weight: 800;
+}
+
+.gold {
+  color: var(--accent);
+}
+
+button {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  color: var(--text-primary);
+  font-weight: 800;
+  background: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  &:hover {
+    background: var(--primary-hover);
+  }
+}

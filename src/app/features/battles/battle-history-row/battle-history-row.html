@@ -1,0 +1,23 @@
+<article class="battle-row">
+  <span class="status-badge" [class]="battle().status.toLowerCase()">
+    {{ battle().status }}
+  </span>
+
+  <div class="matchup">
+    <strong>{{ battle().characterName }}</strong>
+    <span>vs</span>
+    <strong>{{ battle().bossName }}</strong>
+  </div>
+
+  <span class="value">{{ battle().turnCount }}</span>
+  <span class="value">{{ battle().damageDealt }}</span>
+  <span class="value gold">{{ battle().goldEarned }}</span>
+
+<!--  <button type="button" (click)="onViewDetails()">View</button>-->
+  <button
+    type="button"
+    (click)="battle().status === 'ONGOING' ? onContinueBattle() : onViewDetails()"
+  >
+    {{ battle().status === 'ONGOING' ? 'Continue' : 'View' }}
+  </button>
+</article>

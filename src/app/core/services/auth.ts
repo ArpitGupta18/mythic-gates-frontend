@@ -6,10 +6,11 @@ import { RegisterResponse } from '../../features/auth/models/register-response';
 import { LoginRequest } from '../../features/auth/models/login-request';
 import { LoginResponse } from '../../features/auth/models/login-response';
 import { finalize, tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Service()
 export class Auth {
-  private readonly apiUrl = 'http://localhost:9090/api/auth';
+  private readonly apiUrl = `${environment.apiUrl}/auth`;
 
   isLoggedIn = signal<boolean>(this.isAuthenticated());
 

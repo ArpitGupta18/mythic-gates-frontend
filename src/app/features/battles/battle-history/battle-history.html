@@ -1,0 +1,53 @@
+<section class="battle-history-page">
+  <header class="battle-history-header">
+    <div>
+      <p class="eyebrow">Battle Archive</p>
+      <h2>History</h2>
+    </div>
+
+    <p class="total-count">{{ totalElements() }} Battles</p>
+  </header>
+
+  <section class="battle-log">
+    <div class="battle-log-head">
+      <span>Status</span>
+      <span>Matchup</span>
+      <span>Turns</span>
+      <span>Damage</span>
+      <span>Gold</span>
+      <span></span>
+    </div>
+
+    <div class="battle-log-body">
+      @for (battle of battles(); track battle.battleId) {
+                <app-battle-history-row
+                    [battle]="battle"
+                    (viewDetails)="openDetails($event)"
+                    (continueBattle)="continueBattle($event)"
+                  />
+      } @empty {
+        <p class="empty-state">No battles fought yet</p>
+      }
+    </div>
+  </section>
+
+
+  <footer class="pagination">
+    <button type="button" (click)="previousPage()" [disabled]="page() === 0">
+      Previous
+    </button>
+
+    <span>Page {{ page() + 1 }} of {{ totalPages() }}</span>
+
+    <button type="button" (click)="nextPage()" [disabled]="last()">
+      Next
+    </button>
+  </footer>
+
+  @if (selectedBattle()) {
+    <app-battle-detail-modal
+      [battle]="selectedBattle()!"
+      (close)="closeDetails()"
+    />
+  }
+</section>
