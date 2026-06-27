@@ -1,0 +1,37 @@
+<div class="modal-backdrop" (click)="onClose()">
+  <section class="boss-modal" (click)="$event.stopPropagation()">
+    <button type="button" class="close-btn" (click)="onClose()">×</button>
+
+    <div class="modal-top">
+      <div class="modal-image">
+        <img [src]="boss().imageUrl" [alt]="boss().name" />
+      </div>
+
+      <div class="modal-details">
+        <div class="modal-info">
+          <p class="eyebrow">{{ boss().rarity }} Boss</p>
+          <h2>{{ boss().name }}</h2>
+
+          <div class="meta-row">
+            <span>{{ boss().rewardMin }} - {{ boss().rewardMax }} Gold</span>
+            <span>Rage at {{ boss().rageThreshold }}%</span>
+          </div>
+        </div>
+
+        <section class="stats-section">
+          <h3>Boss Stats</h3>
+
+          <div class="stats-grid">
+            <span>Health <strong>{{ boss().baseHealth }}</strong></span>
+            <span>Attack <strong>{{ boss().attack }}</strong></span>
+            <span>Defense <strong>{{ boss().defense }}</strong></span>
+            <span>Crit <strong>{{ boss().critChance }}%</strong></span>
+            <span>Dodge <strong>{{ boss().dodgeChance }}%</strong></span>
+            <span>Heal Every <strong>{{ boss().healInterval }} Turns</strong></span>
+            <span>Heal Amount <strong>{{ boss().healPercentage }}%</strong></span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,24 @@
+<article class="boss-card">
+  <div class="rarity-badge" [class]="boss().rarity.toLowerCase()">
+    {{ boss().rarity }}
+  </div>
+
+  <div class="image-wrap">
+    <img [src]="boss().imageUrl" [alt]="boss().name" />
+  </div>
+
+  <div class="card-body">
+    <h3>{{ boss().name }}</h3>
+
+    <div class="quick-stats">
+      <span>HP {{ boss().baseHealth }}</span>
+      <span>ATK {{ boss().attack }}</span>
+      <span>DEF {{ boss().defense }}</span>
+      <span>CRIT {{ boss().critChance }}%</span>
+    </div>
+
+    <button type="button" (click)="onViewDetails()">
+      View Details
+    </button>
+  </div>
+</article>

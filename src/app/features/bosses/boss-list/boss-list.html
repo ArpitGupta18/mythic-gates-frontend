@@ -1,1 +1,41 @@
-<h1>Bosses Page</h1>
+<section class="bosses-page">
+  <header class="bosses-header">
+    <div>
+      <p class="eyebrow">Enemy Codex</p>
+      <h2>Bosses</h2>
+      <p class="subtitle">
+        Study powerful enemies before entering battle.
+      </p>
+    </div>
+
+    <p class="total-count">{{ totalElements() }} Bosses</p>
+  </header>
+
+  <section class="boss-grid">
+    @for (boss of bosses(); track boss.publicId) {
+      <app-boss-card
+        [boss]="boss"
+        (viewDetails)="openDetails($event)"
+      />
+    }
+  </section>
+
+  <footer class="pagination">
+    <button type="button" (click)="previousPage()" [disabled]="page() === 0">
+      Previous
+    </button>
+
+    <span>Page {{ page() + 1 }} of {{ totalPages() }}</span>
+
+    <button type="button" (click)="nextPage()" [disabled]="last()">
+      Next
+    </button>
+  </footer>
+
+  @if (selectedBoss()) {
+    <app-boss-detail-modal
+      [boss]="selectedBoss()!"
+      (close)="closeDetails()"
+    />
+  }
+</section>
