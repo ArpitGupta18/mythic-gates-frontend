@@ -15,7 +15,7 @@
 
       <nav class="main-nav">
 
-        <a routerLink="/game/dashboard" routerLinkActive="active">
+        <a routerLink="/game/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <mat-icon>home</mat-icon>
           <span>Dashboard</span>
         </a>
@@ -30,7 +30,7 @@
           <span>Bosses</span>
         </a>
 
-        <a routerLink="/game/battles" routerLinkActive="active">
+        <a routerLink="/game/battles" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <mat-icon>sports_martial_arts</mat-icon>
           <span>Battles</span>
         </a>
@@ -80,7 +80,13 @@
 
   <main class="main-container">
     <section class="main-content" [class.has-overlay]="hasOverlay">
-      <router-outlet/>
+      <router-outlet />
     </section>
   </main>
+
+  @if (toast(); as toast) {
+    <div class="toast" [class]="toast.type">
+      {{ toast.message }}
+    </div>
+  }
 </section>

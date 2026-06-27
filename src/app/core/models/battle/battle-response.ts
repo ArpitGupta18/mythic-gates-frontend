@@ -1,7 +1,9 @@
 export interface BattleResponse {
   battleId: string;
+  characterId: string;
   characterName: string;
   characterImageUrl: string;
+  bossId: string;
   bossName: string;
   bossImageUrl: string;
   playerMaxHealth: number;

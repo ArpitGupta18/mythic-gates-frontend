@@ -2,7 +2,9 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth-guard';
 import { roleGuard } from './core/guards/role-guard';
 import { guestGuard } from './core/guards/guest-guard';
+import { noOngoingBattleGuardGuard } from './core/guards/no-ongoing-battle-guard-guard';
 
+// @ts-ignore
 export const routes: Routes = [
   {
     path: '',
@@ -39,13 +41,50 @@ export const routes: Routes = [
           import('./features/bosses/boss-list/boss-list').then((m) => m.BossList),
       },
       {
+        path: 'battles/:battleId',
+        loadComponent: () =>
+          import('./features/battles/pages/battle-game-page/battle-game-page').then(
+            (m) => m.BattleGamePage,
+          ),
+      },
+      {
         path: 'battles',
         loadComponent: () =>
-          import('./features/battles/battle-history/battle-history').then((m) => m.BattleHistory),
+          import('./features/battles/history/battle-history/battle-history').then(
+            (m) => m.BattleHistory,
+          ),
       },
+
       {
         path: 'shop',
         loadComponent: () => import('./features/shop/shop/shop').then((m) => m.Shop),
+      },
+      {
+        path: 'battle',
+        canActivateChild: [noOngoingBattleGuardGuard],
+        children: [
+          {
+            path: 'start/characters',
+            loadComponent: () =>
+              import('./features/battles/pages/character-select-page/character-select-page').then(
+                (m) => m.CharacterSelectPage,
+              ),
+          },
+          {
+            path: 'start/bosses/:characterId',
+            loadComponent: () =>
+              import('./features/battles/pages/boss-select-page/boss-select-page').then(
+                (m) => m.BossSelectPage,
+              ),
+          },
+          {
+            path: 'loading/:characterId/:bossId',
+            loadComponent: () =>
+              import('./features/battles/pages/battle-loading-page/battle-loading-page').then(
+                (m) => m.BattleLoadingPage,
+              ),
+          },
+        ],
       },
     ],
   },

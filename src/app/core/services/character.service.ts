@@ -11,11 +11,13 @@ export class CharacterService {
 
   private http = inject(HttpClient);
 
-  getCharacters(page = 0, size = 2) {
+  getMyCharacters(page = 0, size = 2) {
     const params = new HttpParams().set('page', page).set('size', size);
     return this.http.get<ApiResponse<PageResponse<CharacterResponse>>>(
       `${this.apiUrl}/users/me/characters`,
       { params },
     );
   }
+
+
 }

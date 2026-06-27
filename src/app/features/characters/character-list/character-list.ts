@@ -29,7 +29,7 @@ export class CharacterList implements OnInit {
   }
 
   loadCharacters(page: number) {
-    this.characterService.getCharacters(page, this.size()).subscribe({
+    this.characterService.getMyCharacters(page, this.size()).subscribe({
       next: (response) => {
         const data = response.data!;
 

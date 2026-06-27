@@ -1,0 +1,39 @@
+<section class="boss-select-page">
+  <header class="selection-header">
+    <div class="selection-copy">
+      <p class="eyebrow">Battle Preparation</p>
+      <h1>Choose Your Opponent</h1>
+      <p class="subtitle">
+        Select the boss your champion will face inside the Mythic Gates.
+      </p>
+    </div>
+
+    <button type="button" class="random-btn" (click)="selectRandomBoss()">
+      Random Boss
+    </button>
+  </header>
+
+  @if (loading()) {
+    <p class="loading">Loading bosses...</p>
+  } @else {
+    <section class="boss-grid">
+      @for (boss of bosses(); track boss.publicId) {
+        <article class="boss-card" (click)="selectBoss(boss.publicId)">
+          <img [src]="boss.imageUrl" [alt]="boss.name" />
+
+          <div class="boss-info">
+            <div class="rarity" [class]="boss.rarity.toLowerCase()">{{ boss.rarity }}</div>
+            <h3>{{ boss.name }}</h3>
+
+            <div class="stats">
+              <span>HP {{ boss.baseHealth }}</span>
+              <span>ATK {{ boss.attack }}</span>
+              <span>DEF {{ boss.defense }}</span>
+              <span>RAGE {{ boss.rageThreshold }}%</span>
+            </div>
+          </div>
+        </article>
+      }
+    </section>
+  }
+</section>

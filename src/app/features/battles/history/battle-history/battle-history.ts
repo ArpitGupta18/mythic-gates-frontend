@@ -1,9 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { BattleService } from '../../../core/services/battle.service';
-import { BattleResponse } from '../../../core/models/battle/battle-response';
+import { BattleService } from '../../../../core/services/battle.service';
+import { BattleResponse } from '../../../../core/models/battle/battle-response';
 
 import { BattleDetailModal } from '../battle-detail-modal/battle-detail-modal';
 import { BattleHistoryRow } from '../battle-history-row/battle-history-row';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-battle-history',
@@ -13,6 +14,7 @@ import { BattleHistoryRow } from '../battle-history-row/battle-history-row';
 })
 export class BattleHistory implements OnInit {
   private battleService = inject(BattleService);
+  private router = inject(Router);
 
   battles = signal<BattleResponse[]>([]);
 
@@ -65,6 +67,7 @@ export class BattleHistory implements OnInit {
   }
 
   continueBattle(battle: BattleResponse) {
+    this.router.navigate(['/game/battles', battle.battleId]);
     console.log(battle);
   }
 }

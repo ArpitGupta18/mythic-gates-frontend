@@ -34,4 +34,11 @@ export class User {
   clearProfile() {
     this._profile.set(this.emptyProfile);
   }
+
+  getCurrentUser() {
+    return this.http.get<ApiResponse<UserProfile | null>>(`${this.apiUrl}/me`)
+      .subscribe({
+        next: (res) => this._profile.set(res.data),
+      })
+  }
 }

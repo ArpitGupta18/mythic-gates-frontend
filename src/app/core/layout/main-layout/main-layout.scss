@@ -277,7 +277,7 @@
 
   padding: 0.5rem;
 
-  background: #1a1714;
+  background: var(--stats-background);
   border: 2px solid var(--border);
   border-radius: var(--radius-sm);
 
@@ -340,3 +340,36 @@
     url("/assets/background2.png") center / cover no-repeat;
 }
 
+.toast {
+  position: fixed;
+  left: 50%;
+  //transform: translateX(0%);
+  top: 1.5rem;
+  z-index: 999;
+
+  padding: 0.85rem 1rem;
+
+  color: var(--text-primary);
+  font-weight: 800;
+
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+
+  &.success {
+    border-color: var(--success);
+  }
+
+  &.warning {
+    border-color: var(--warning);
+  }
+
+  &.error {
+    border-color: var(--danger);
+  }
+
+  &.info {
+    border-color: var(--accent);
+  }
+}

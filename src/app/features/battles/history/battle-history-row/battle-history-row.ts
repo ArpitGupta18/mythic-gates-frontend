@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { BattleResponse } from '../../../core/models/battle/battle-response';
+import { BattleResponse } from '../../../../core/models/battle/battle-response';
 import { BattleDetailModal } from '../battle-detail-modal/battle-detail-modal';
 
 @Component({

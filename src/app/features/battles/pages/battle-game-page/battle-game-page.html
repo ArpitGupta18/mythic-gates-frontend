@@ -1,0 +1,198 @@
+<section class="battle-game-page">
+  @if (loading()) {
+    <p class="loading">Loading battle...</p>
+  } @else if (battle(); as battle) {
+    <header class="battle-hud">
+      <div>
+        <span class="hud-label">Battle Arena</span>
+        <strong>{{ battle.characterName }} vs {{ battle.bossName }}</strong>
+      </div>
+
+      <div class="hud-right">
+        <span>Turn {{ battle.turnCount }}</span>
+
+        <button
+          type="button"
+          class="forfeit-btn"
+          title="Forfeit battle"
+          [disabled]="actionLoading()"
+          (click)="forfeit()"
+        >
+          ✕
+        </button>
+      </div>
+    </header>
+
+    <main class="battle-stage">
+      <article class="combatant player">
+        <div class="combatant-name">
+          <span>Champion</span>
+          <h3>{{ battle.characterName }}</h3>
+        </div>
+
+        <div class="combatant-art">
+          <img [src]="battle.characterImageUrl" [alt]="battle.characterName" />
+        </div>
+
+        <div class="combatant-bars">
+          <div class="bar-group">
+            <p>
+              <span>HP</span>
+              <strong>{{ battle.playerCurrentHealth }} / {{ battle.playerMaxHealth }}</strong>
+            </p>
+
+            <div class="bar">
+              <span
+                class="hp"
+                [style.width.%]="(battle.playerCurrentHealth / battle.playerMaxHealth) * 100"
+              ></span>
+            </div>
+          </div>
+
+          <div class="bar-group">
+            <p>
+              <span>MP</span>
+              <strong>{{ battle.playerCurrentMana }} / {{ battle.playerMaxMana }}</strong>
+            </p>
+
+            <div class="bar">
+              <span
+                class="mp"
+                [style.width.%]="(battle.playerCurrentMana / battle.playerMaxMana) * 100"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="center-column">
+        <div class="vs-badge">VS</div>
+
+        <section class="battle-log">
+          <div class="battle-log-header">
+            <span>Combat Log</span>
+          </div>
+
+          <div class="battle-log-messages">
+            @for (message of battleLog(); track message; let i = $index) {
+              <p [class.player-message]="i === 0" [class.boss-message]="i === 1">
+                {{ message }}
+              </p>
+            }
+          </div>
+        </section>
+      </div>
+
+      <article class="combatant boss">
+        <div class="combatant-name">
+          <span>Boss</span>
+          <h3>{{ battle.bossName }}</h3>
+        </div>
+
+        <div class="combatant-art">
+          <img [src]="battle.bossImageUrl" [alt]="battle.bossName" />
+        </div>
+
+        <div class="combatant-bars">
+          <div class="bar-group">
+            <p>
+              <span>HP</span>
+              <strong>{{ battle.bossCurrentHealth }} / {{ battle.bossMaxHealth }}</strong>
+            </p>
+
+            <div class="bar">
+              <span
+                class="hp"
+                [style.width.%]="(battle.bossCurrentHealth / battle.bossMaxHealth) * 100"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <section class="command-panel">
+      <div class="command-row">
+        @for (skill of basicSkills(); track skill.publicId) {
+          <button
+            type="button"
+            class="skill basic"
+            [disabled]="actionLoading()"
+            (click)="attack(skill.publicId)"
+          >
+            <span>{{ skill.name }}</span>
+            <small>{{ skill.manaCost }} MP</small>
+          </button>
+        }
+      </div>
+
+      <div class="command-row">
+        @for (skill of specialSkills(); track skill.publicId) {
+          <button
+            type="button"
+            class="skill special"
+            [disabled]="actionLoading()"
+            (click)="attack(skill.publicId)"
+          >
+            <span>{{ skill.name }}</span>
+            <small>{{ skill.manaCost }} MP</small>
+          </button>
+        }
+      </div>
+
+      <div class="command-row">
+        <button
+          type="button"
+          class="skill heal"
+          [disabled]="actionLoading()"
+          (click)="heal()"
+        >
+          <span>Heal</span>
+          <small>Recover HP</small>
+        </button>
+
+        <button
+          type="button"
+          class="skill mana"
+          [disabled]="actionLoading()"
+          (click)="restoreMana()"
+        >
+          <span>Restore Mana</span>
+          <small>Recover MP</small>
+        </button>
+      </div>
+    </section>
+  }
+
+  @if (battleResultModal(); as result) {
+    <div class="result-backdrop">
+      <article class="result-modal">
+        <p class="eyebrow">Battle Finished</p>
+
+        <h2>
+          @if (result.result === 'WON') {
+            Victory!
+          } @else {
+            Defeat
+          }
+        </h2>
+
+        <p>{{ result.playerActionMessage }}</p>
+        <p>{{ result.bossActionMessage }}</p>
+
+        <div class="rewards">
+          <span>Gold Earned</span>
+          <strong>{{ result.battle.goldEarned }}</strong>
+        </div>
+
+        @if (result.result === 'WON') {
+          <p class="victory-note">Boss defeated!</p>
+        }
+
+        <button type="button" (click)="goToHistory()">
+          Continue
+        </button>
+      </article>
+    </div>
+  }
+</section>

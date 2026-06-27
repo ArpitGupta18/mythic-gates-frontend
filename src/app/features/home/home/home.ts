@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../../../core/services/auth';
+import { BattleService } from '../../../core/services/battle.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,18 @@ import { Auth } from '../../../core/services/auth';
 })
 export class Home {
   router = inject(Router);
-  authService = inject(Auth);
+  private battleService = inject(BattleService);
 
-  goToCharacters() {
-    this.router.navigate(['characters']);
+  playGame() {
+    this.battleService.getOngoingBattle().subscribe({
+      next: (response) => {
+        this.router.navigate(['game/battles', response.data!.battleId]);
+      },
+      error: (err) => {
+        if (err.status === 404) {
+          this.router.navigate(['game/battle/start/characters']);
+        }
+      },
+    });
   }
 }

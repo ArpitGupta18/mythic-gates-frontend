@@ -1,0 +1,41 @@
+<section class="character-select-page">
+  <header class="selection-header">
+    <div class="selection-copy">
+      <p class="eyebrow">Battle Preparation</p>
+
+      <h1>Choose Your Champion</h1>
+
+      <p class="subtitle">
+        Select the hero who will enter the Mythic Gates and face the coming boss.
+      </p>
+    </div>
+
+    <button type="button" class="random-btn" (click)="selectRandomCharacter()">
+      Random Champion
+    </button>
+  </header>
+
+  @if (loading()) {
+    <p class="loading">Loading your heroes...</p>
+  } @else {
+    <section class="character-grid">
+      @for (character of characters(); track character.publicId) {
+        <article class="character-card" (click)="selectCharacter(character.publicId)">
+          <img [src]="character.imageUrl" [alt]="character.name" />
+
+          <div class="character-info">
+            <div class="rarity" [class]="character.rarity.toLowerCase()">{{ character.rarity }}</div>
+            <h3>{{ character.name }}</h3>
+
+            <div class="stats">
+              <span>HP {{ character.baseHealth }}</span>
+              <span>MP {{ character.baseMana }}</span>
+              <span>ATK {{ character.attack }}</span>
+              <span>DEF {{ character.defense }}</span>
+            </div>
+          </div>
+        </article>
+      }
+    </section>
+  }
+</section>
