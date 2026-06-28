@@ -11,10 +11,17 @@ export interface ToastMessage {
 export class Toast {
   toast = signal<ToastMessage | null>(null);
 
+  private timeoutId: ReturnType<typeof setTimeout> | null = null;
+
   show(message: string, type: ToastType = 'info') {
     this.toast.set({ message, type });
 
-    setTimeout(() => {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+
+    this.timeoutId = setTimeout(() => {
+      this.toast.set(null);
       this.toast.set(null);
     }, 3000);
   }

@@ -1,1 +1,88 @@
-<p>shop works!</p>
+<section class="store-page">
+  <header class="store-header">
+    <div>
+      <p class="eyebrow">Ancient Market</p>
+      <h2>Hero Store</h2>
+      <p class="subtitle">
+        Unlock new champions and inspect their battle skills.
+      </p>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <p class="loading">Loading heroes...</p>
+  } @else {
+    <section class="character-grid">
+      @for (character of characters(); track character.publicId) {
+        <article class="character-card">
+          <div class="rarity-badge" [class]="character.rarity.toLowerCase()">
+            {{ character.rarity }}
+          </div>
+
+          <div class="price-badge">
+            {{ character.price }} Gold
+          </div>
+
+          <div class="image-wrap">
+            <img [src]="character.imageUrl" [alt]="character.name" />
+          </div>
+
+          <div class="card-body">
+            <h3>{{ character.name }}</h3>
+
+            <div class="quick-stats">
+              <span>HP {{ character.baseHealth }}</span>
+              <span>MP {{ character.baseMana }}</span>
+              <span>ATK {{ character.attack }}</span>
+              <span>DEF {{ character.defense }}</span>
+            </div>
+
+            <div class="card-actions">
+              <button type="button" class="details-btn" (click)="openDetails(character)">
+                View Skills
+              </button>
+
+              @if (ownedCharacterIds().has(character.publicId)) {
+                <button type="button" class="owned-btn" disabled>
+                  Owned
+                </button>
+              } @else {
+                <button
+                  type="button"
+                  class="unlock-btn"
+                  [disabled]="unlockingId() === character.publicId"
+                  (click)="unlockCharacter(character)"
+                >
+                  @if (unlockingId() === character.publicId) {
+                    Unlocking...
+                  } @else {
+                    Unlock
+                  }
+                </button>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </section>
+
+<!--    <footer class="pagination">-->
+<!--      <button type="button" (click)="previousPage()" [disabled]="page() === 0">-->
+<!--        Previous-->
+<!--      </button>-->
+
+<!--      <span>Page {{ page() + 1 }} of {{ totalPages() }}</span>-->
+
+<!--      <button type="button" (click)="nextPage()" [disabled]="last()">-->
+<!--        Next-->
+<!--      </button>-->
+<!--    </footer>-->
+  }
+
+  @if (selectedCharacter()) {
+    <app-character-detail-modal
+      [character]="selectedCharacter()!"
+      (close)="closeDetails()"
+    />
+  }
+</section>

@@ -19,5 +19,16 @@ export class CharacterService {
     );
   }
 
+  getAllCharacters(page = 0, size = 100) {
+    const params = new HttpParams().set('page', page).set('size', size);
 
+    return this.http.get<ApiResponse<PageResponse<CharacterResponse>>>(
+      `${this.apiUrl}/characters`,
+      { params },
+    );
+  }
+
+  unlockCharacter(characterId: string) {
+    return this.http.post<ApiResponse<void>>(`${this.apiUrl}/characters/${characterId}/unlock`, {});
+  }
 }
