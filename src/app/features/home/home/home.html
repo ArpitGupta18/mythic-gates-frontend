@@ -1,5 +1,83 @@
-<h1>Home Page</h1>
+<section class="home-page">
+  <section class="arena-board">
+    <header class="arena-header">
+      <p class="eyebrow">Mythic Gates</p>
+      <h2>Ancient Battle Arena</h2>
+      <p>
+        The gates are open. Begin a new challenge or return to your unfinished duel.
+      </p>
+    </header>
 
-<button (click)="playGame()">
-  Play Game
-</button>
+    <section class="arena-gate">
+      <div class="gate-pill left"></div>
+
+      <div class="arena-status">
+        @if (ongoingBattle(); as battle) {
+          <span class="status-label active">Battle in Progress</span>
+          <h3>{{ battle.characterName }} vs {{ battle.bossName }}</h3>
+          <p>Turn {{ battle.turnCount }} · {{ battle.status }}</p>
+        } @else {
+          <span class="status-label">No Active Battle</span>
+          <h3>The arena waits...</h3>
+          <p>Choose your champion and enter the fight.</p>
+        }
+      </div>
+
+      <div class="gate-pill right"></div>
+    </section>
+
+    <section class="play-panel">
+      <article class="play-card start-card">
+        <div class="card-top">
+          <mat-icon class="card-icon">gavel</mat-icon>
+
+          <div>
+            <span>New Challenge</span>
+            <h3>Start New Battle</h3>
+          </div>
+        </div>
+
+        <p>
+          Select a hero, face a boss, and earn gold through victory and survival.
+        </p>
+
+        <button
+          type="button"
+          [disabled]="loadingBattle() || !!ongoingBattle()"
+          (click)="startNewBattle()"
+        >
+          Enter Arena
+        </button>
+      </article>
+
+      <article class="play-card continue-card">
+        <div class="card-top">
+          <mat-icon class="card-icon">history</mat-icon>
+
+          <div>
+            <span>Unfinished Duel</span>
+            <h3>Continue Battle</h3>
+          </div>
+        </div>
+
+        @if (ongoingBattle(); as battle) {
+          <p>
+            Resume your fight as {{ battle.characterName }} against {{ battle.bossName }}.
+          </p>
+        } @else {
+          <p>
+            No warrior is currently locked in battle.
+          </p>
+        }
+
+        <button
+          type="button"
+          [disabled]="loadingBattle() || !ongoingBattle()"
+          (click)="continueBattle()"
+        >
+          Return to Fight
+        </button>
+      </article>
+    </section>
+  </section>
+</section>
