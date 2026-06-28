@@ -7,6 +7,7 @@ import { LoginRequest } from '../../features/auth/models/login-request';
 import { LoginResponse } from '../../features/auth/models/login-response';
 import { finalize, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { Login } from '../../features/auth/login/login';
 
 @Service()
 export class Auth {
@@ -21,7 +22,7 @@ export class Auth {
   }
 
   login(request: LoginRequest) {
-    return this.http.post<ApiResponse<LoginResponse>>(`${this.apiUrl}/login`, request);
+    return this.http.post<ApiResponse<LoginResponse>>(`${this.apiUrl}/login`, request, {withCredentials: true});
   }
 
   saveToken(token: string) {
@@ -38,8 +39,7 @@ export class Auth {
       .post<ApiResponse<null>>(`${this.apiUrl}/logout`, {}, { withCredentials: true })
       .pipe(
         finalize(() => {
-          localStorage.removeItem('accessToken');
-          this.isLoggedIn.set(false);
+          this.logoutClientSide();
         }),
       );
   }
@@ -67,5 +67,18 @@ export class Auth {
 
   isAdmin(): boolean {
     return this.getRole() === 'ROLE_ADMIN';
+  }
+
+  refreshToken() {
+    return this.http.post<ApiResponse<LoginResponse>>(
+      `${this.apiUrl}/refresh`,
+      {},
+      { withCredentials: true },
+    );
+  }
+
+  logoutClientSide() {
+    localStorage.removeItem('accessToken');
+    this.isLoggedIn.set(false);
   }
 }
