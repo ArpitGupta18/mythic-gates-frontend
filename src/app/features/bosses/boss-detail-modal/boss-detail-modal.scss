@@ -30,27 +30,27 @@
   box-shadow: var(--shadow-lg);
 }
 
-.close-btn {
-  position: absolute;
-  top: 0.85rem;
-  right: 0.85rem;
-  z-index: 2;
-
-  cursor: pointer;
-
-  width: 2rem;
-  height: 2rem;
-
-  color: var(--text-primary);
-  font-size: 1.25rem;
-
-  background: var(--surface-elevated);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+//.close-btn {
+//  position: absolute;
+//  top: 0.85rem;
+//  right: 0.85rem;
+//  z-index: 2;
+//
+//  cursor: pointer;
+//
+//  width: 2rem;
+//  height: 2rem;
+//
+//  color: var(--text-primary);
+//  font-size: 1.25rem;
+//
+//  background: var(--surface-elevated);
+//  border: 1px solid var(--border);
+//  border-radius: 50%;
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//}
 
 .modal-top {
   display: grid;
@@ -138,50 +138,28 @@
   }
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(130px, 1fr));
-  gap: 0.55rem;
-
-  span {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.7rem;
-
-    padding: 0.65rem 0.75rem;
-
-    color: var(--text-secondary);
-    font-size: 0.86rem;
-    font-weight: 800;
-
-    background: var(--surface-elevated);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-
-    strong {
-      color: var(--success);
-    }
-  }
-}
-
-@media (max-width: 820px) {
-  .modal-top {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-details {
-    padding-right: 0;
-  }
-
-  .modal-image {
-    min-height: 260px;
-
-    img {
-      max-height: 250px;
-    }
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-}
+//.stats-grid {
+//  display: grid;
+//  grid-template-columns: repeat(2, minmax(130px, 1fr));
+//  gap: 0.55rem;
+//
+//  span {
+//    display: flex;
+//    justify-content: space-between;
+//    gap: 0.7rem;
+//
+//    padding: 0.65rem 0.75rem;
+//
+//    color: var(--text-secondary);
+//    font-size: 0.86rem;
+//    font-weight: 800;
+//
+//    background: var(--surface-elevated);
+//    border: 1px solid var(--border);
+//    border-radius: var(--radius-md);
+//
+//    strong {
+//      color: var(--accent);
+//    }
+//  }
+//}

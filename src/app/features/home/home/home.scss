@@ -210,7 +210,6 @@
     box-shadow var(--transition);
 
   &:hover {
-    transform: translateY(-3px);
     border-color: rgb(248 154 56 / 34%);
     box-shadow: var(--shadow-lg);
   }
@@ -241,7 +240,7 @@
       opacity var(--transition);
 
     &:hover:not(:disabled) {
-      transform: translateY(-2px);
+      //transform: translateY(-2px);
       background: linear-gradient(180deg, #ffad55, var(--primary-hover));
     }
 

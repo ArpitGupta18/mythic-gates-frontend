@@ -15,8 +15,9 @@
     <section class="character-grid">
       @for (character of characters(); track character.publicId) {
         <article class="character-card">
+
           <div class="rarity-badge" [class]="character.rarity.toLowerCase()">
-            {{ character.rarity }}
+            {{ character.rarity === "LEGENDARY" ? "LEGEND" : character.rarity }}
           </div>
 
           <div class="price-badge">
@@ -39,7 +40,7 @@
 
             <div class="card-actions">
               <button type="button" class="details-btn" (click)="openDetails(character)">
-                View Skills
+                Skills
               </button>
 
               @if (ownedCharacterIds().has(character.publicId)) {

@@ -21,55 +21,54 @@
     box-shadow var(--transition);
 
   &:hover {
-    transform: translateY(-4px);
     border-color: var(--danger);
     box-shadow: var(--shadow-lg);
   }
 }
 
-.rarity-badge {
-  position: absolute;
-  top: 0.9rem;
-  right: 0.9rem;
-  z-index: 2;
-
-  padding: 0.35rem 0.7rem;
-
-  color: var(--text-primary);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  border-radius: 999px;
-  border: 1px solid transparent;
-
-  &.common {
-    background: #5f5a54;
-    border-color: #777068;
-  }
-
-  &.rare {
-    background: #556a83;
-    border-color: #7896b8;
-  }
-
-  &.epic {
-    background: #654b7c;
-    border-color: #8d6bb0;
-  }
-
-  &.legendary {
-    color: var(--background);
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-
-  &.mythic {
-    background: var(--danger);
-    border-color: var(--warning);
-  }
-}
+//.rarity-badge {
+//  position: absolute;
+//  top: 0.9rem;
+//  right: 0.9rem;
+//  z-index: 2;
+//
+//  padding: 0.35rem 0.7rem;
+//
+//  color: var(--text-primary);
+//  font-size: 0.72rem;
+//  font-weight: 800;
+//  letter-spacing: 0.08em;
+//  text-transform: uppercase;
+//
+//  border-radius: 999px;
+//  border: 1px solid transparent;
+//
+//  &.common {
+//    background: #5f5a54;
+//    border-color: #777068;
+//  }
+//
+//  &.rare {
+//    background: #556a83;
+//    border-color: #7896b8;
+//  }
+//
+//  &.epic {
+//    background: #654b7c;
+//    border-color: #8d6bb0;
+//  }
+//
+//  &.legendary {
+//    color: var(--background);
+//    background: var(--accent);
+//    border-color: var(--accent);
+//  }
+//
+//  &.mythic {
+//    background: var(--danger);
+//    border-color: var(--warning);
+//  }
+//}
 
 .image-wrap {
   height: 220px;
@@ -136,24 +135,24 @@
   }
 }
 
-.quick-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.55rem;
-
-  span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 0.55rem;
-
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    font-weight: 700;
-
-    background: var(--surface-elevated);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-  }
-}
+//.quick-stats {
+//  display: grid;
+//  grid-template-columns: repeat(2, 1fr);
+//  gap: 0.55rem;
+//
+//  span {
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//
+//    padding: 0.55rem;
+//
+//    color: var(--text-secondary);
+//    font-size: 0.8rem;
+//    font-weight: 700;
+//
+//    background: var(--surface-elevated);
+//    border: 1px solid var(--border);
+//    border-radius: var(--radius-md);
+//  }
+//}
