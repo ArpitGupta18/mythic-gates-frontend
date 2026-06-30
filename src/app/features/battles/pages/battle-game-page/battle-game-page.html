@@ -31,7 +31,7 @@
         </div>
 
         <div class="combatant-art">
-          <img [src]="battle.characterImageUrl" [alt]="battle.characterName" />
+          <img [src]="battle.characterImageUrl" [alt]="battle.characterName"/>
         </div>
 
         <div class="combatant-bars">
@@ -90,7 +90,7 @@
         </div>
 
         <div class="combatant-art">
-          <img [src]="battle.bossImageUrl" [alt]="battle.bossName" />
+          <img [src]="battle.bossImageUrl" [alt]="battle.bossName"/>
         </div>
 
         <div class="combatant-bars">
@@ -117,11 +117,15 @@
           <button
             type="button"
             class="skill basic"
-            [disabled]="actionLoading()"
+            [disabled]="actionLoading() || isSkillOnCooldown(skill.publicId)"
             (click)="attack(skill.publicId)"
           >
             <span>{{ skill.name }}</span>
-            <small>{{ skill.manaCost }} MP</small>
+            @if (isSkillOnCooldown(skill.publicId)) {
+              <small>Cooldown: {{ getSkillCooldown(skill.publicId) }} turn(s)</small>
+            } @else {
+              <small>{{ skill.manaCost }} mana</small>
+            }
           </button>
         }
       </div>
@@ -131,11 +135,15 @@
           <button
             type="button"
             class="skill special"
-            [disabled]="actionLoading()"
+            [disabled]="actionLoading() || isSkillOnCooldown(skill.publicId)"
             (click)="attack(skill.publicId)"
           >
             <span>{{ skill.name }}</span>
-            <small>{{ skill.manaCost }} MP</small>
+            @if (isSkillOnCooldown(skill.publicId)) {
+              <small>Cooldown: {{ getSkillCooldown(skill.publicId) }} turn(s)</small>
+            } @else {
+              <small>{{ skill.manaCost }} mana</small>
+            }
           </button>
         }
       </div>

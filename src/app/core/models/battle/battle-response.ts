@@ -1,3 +1,5 @@
+import { SkillCooldownResponse } from './skill-cooldown-response';
+
 export interface BattleResponse {
   battleId: string;
   characterId: string;
@@ -18,4 +20,5 @@ export interface BattleResponse {
   status: 'ONGOING' | 'WON' | 'LOST';
   createdAt: string;
   updatedAt: string;
+  skillCooldowns: SkillCooldownResponse[];
 }

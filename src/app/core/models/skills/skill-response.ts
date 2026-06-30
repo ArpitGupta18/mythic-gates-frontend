@@ -5,4 +5,5 @@ export interface SkillResponse {
   slot: number;
   damageMultiplier: number;
   manaCost: number;
+  cooldown: number;
 }

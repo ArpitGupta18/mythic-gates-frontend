@@ -20,7 +20,7 @@ export class BattleGamePage {
   private skillService = inject(SkillService);
   private toastService = inject(Toast);
   private router = inject(Router);
-  private userService = inject(User)
+  private userService = inject(User);
 
   battle = signal<BattleResponse | null>(null);
   loading = signal<boolean>(false);
@@ -83,6 +83,18 @@ export class BattleGamePage {
         this.loading.set(false);
       },
     });
+  }
+
+  getSkillCooldown(skillId: string): number {
+    const cooldown = this.battle()?.skillCooldowns?.find(
+      (skillCooldown) => skillCooldown.skillId === skillId,
+    );
+
+    return cooldown?.remainingCooldown ?? 0;
+  }
+
+  isSkillOnCooldown(skillId: string): boolean {
+    return this.getSkillCooldown(skillId) > 0;
   }
 
   attack(skillId: string) {
@@ -166,7 +178,6 @@ export class BattleGamePage {
   }
 
   goToHistory() {
-
     this.router.navigate(['/game']);
   }
 }
