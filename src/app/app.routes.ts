@@ -4,7 +4,6 @@ import { roleGuard } from './core/guards/role-guard';
 import { guestGuard } from './core/guards/guest-guard';
 import { noOngoingBattleGuardGuard } from './core/guards/no-ongoing-battle-guard-guard';
 
-// @ts-ignore
 export const routes: Routes = [
   {
     path: '',
