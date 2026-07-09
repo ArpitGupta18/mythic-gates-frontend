@@ -1,0 +1,44 @@
+<section class="recharge-page">
+  <header class="recharge-header">
+    <div>
+      <p class="eyebrow">Ancient Treasury</p>
+      <h2>Recharge Gold</h2>
+      <p class="subtitle">
+        Choose a gold package and continue to secure payment.
+      </p>
+    </div>
+  </header>
+
+  @if (loadingPackages()) {
+    <p class="loading">Loading gold packages...</p>
+  } @else {
+    <section class="package-grid">
+      @for (pkg of packages(); track pkg.packageId) {
+        <article class="package-card">
+          <mat-icon class="coin-icon">monetization_on</mat-icon>
+
+          <div class="card-body">
+            <h3>{{ pkg.goldAmount }} Gold</h3>
+
+            <p class="price">
+              {{ formatPrice(pkg) }}
+            </p>
+
+            <button
+              type="button"
+              class="buy-btn"
+              (click)="buyPackage(pkg)"
+              [disabled]="checkoutLoading()"
+            >
+              @if (checkoutLoading() && selectedPackageId() === pkg.packageId) {
+                Redirecting...
+              } @else {
+                Buy Now
+              }
+            </button>
+          </div>
+        </article>
+      }
+    </section>
+  }
+</section>

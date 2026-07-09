@@ -59,6 +59,11 @@ export const routes: Routes = [
         loadComponent: () => import('./features/shop/shop/shop').then((m) => m.Shop),
       },
       {
+        path: 'recharge',
+        loadComponent: () =>
+          import('./features/recharge/recharge/recharge').then((m) => m.Recharge),
+      },
+      {
         path: 'battle',
         canActivateChild: [noOngoingBattleGuardGuard],
         children: [

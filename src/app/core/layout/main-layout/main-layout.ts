@@ -35,7 +35,8 @@ export class MainLayout {
         url.includes('/game/bosses') ||
         url.includes('/game/characters') ||
         url === '/game/battles' ||
-        url.includes('/game/shop');
+        url.includes('/game/shop') ||
+        url.includes('/game/recharge');
     });
   }
 
